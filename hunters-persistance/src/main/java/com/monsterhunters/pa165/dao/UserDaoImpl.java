@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 /**
  * Created by Snurka on 10/30/2016.
  */
@@ -24,11 +26,17 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findById(UUID id) {
+        if(id == null) {
+            throw new IllegalArgumentException("Id can't ne null");
+        }
         return entityManager.find(User.class, id);
     }
 
     @Override
     public User findByNickname(String nickname) {
+        if(nickname == null) {
+            throw new IllegalArgumentException("Nickname can't ne null");
+        }
         try {
             return entityManager.createQuery("select c from User c where c.nickname = :nickname", User.class)
                     .setParameter("nickname", nickname)
@@ -40,6 +48,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByEmail(String email) {
+        if(email == null) {
+            throw new IllegalArgumentException("Email can't ne null");
+        }
         try {
             return entityManager
                     .createQuery("select u from User u where u.email = :email", User.class)
@@ -58,11 +69,17 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void create(User user) {
+        if(user == null) {
+            throw new IllegalArgumentException("User can't ne null");
+        }
         entityManager.persist(user);
     }
 
     @Override
     public void delete(User user) throws IllegalArgumentException {
+        if(user == null) {
+            throw new IllegalArgumentException("User can't ne null");
+        }
         List<Comment> commentList = getCommentsByUser(user);
         for(Comment comment: commentList) {
             entityManager.remove(comment);
@@ -71,6 +88,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     private List<Comment> getCommentsByUser(User user) {
+        if(user == null) {
+            throw new IllegalArgumentException("User can't ne null");
+        }
         try {
             return entityManager.createQuery("Select c from Comment c where c.user= :user", Comment.class)
                     .setParameter("user", user)
@@ -82,6 +102,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void update(User user) {
+        if(user == null) {
+            throw new IllegalArgumentException("User can't ne null");
+        }
         entityManager.merge(user);
     }
 }
