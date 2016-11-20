@@ -6,17 +6,22 @@
         <artifactId>hunters-parent</artifactId>
         <version>1.0</version>
     </parent>
-    
+
     <artifactId>hunters-api</artifactId>
     <packaging>jar</packaging>
     <name>hunters-api</name>
-    
+
     <dependencies>
         <!-- validation annotations for bean properties -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>
-       
+        <dependency>
+            <groupId>com.monsterhunters.pa165</groupId>
+            <artifactId>hunters-persistance</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 </project>

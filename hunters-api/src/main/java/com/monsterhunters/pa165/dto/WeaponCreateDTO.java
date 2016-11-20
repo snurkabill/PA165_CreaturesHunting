@@ -1,12 +1,14 @@
 package com.monsterhunters.pa165.dto;
 
+
 import com.monsterhunters.pa165.enums.MonsterType;
 
-import java.util.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Max;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by babcang on 17.11.2016.
